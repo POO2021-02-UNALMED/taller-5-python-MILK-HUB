@@ -1,14 +1,17 @@
 class Animal:
+    def __init__(self,nombre,edad,habitat,genero):
+        self.nombre = nombre
+        self.edad = edad
+        self.habitat = habitat
+        self.genero = genero
+        self.zona = None
+        from zooAnimales.anfibio import Anfibio
+        from zooAnimales.ave import Ave
+        from zooAnimales.mamifero import Mamifero
+        from zooAnimales.pez import Pez
+        from zooAnimales.reptil import Reptil
+        self.totalAnimales = Mamifero.cantidadMamiferos() + Ave.cantidadAves() + Reptil.cantidadReptiles() + Pez.cantidadPeces() + Anfibio.cantidadAnfibios()
     
-    _totalAnimales = 0
-    
-    def __init__(self, nombre, edad, habitat, genero, zona = None):
-        self._nombre = nombre
-        self._edad = edad
-        self._habitat = habitat
-        self._genero = genero
-        self._zona = zona
-
     def toString(self):
         if (self._zona == None):
             return "Mi nombre es {}, tengo una edad de {}, habito en {} y mi genero es {}".format(self._nombre, self._edad, self._habitat, self._genero)
