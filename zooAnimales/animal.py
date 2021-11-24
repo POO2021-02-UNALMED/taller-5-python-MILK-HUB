@@ -12,45 +12,33 @@ class Animal:
         from zooAnimales.reptil import Reptil
         self.totalAnimales = Mamifero.cantidadMamiferos() + Ave.cantidadAves() + Reptil.cantidadReptiles() + Pez.cantidadPeces() + Anfibio.cantidadAnfibios()
     
-    def toString(self):
-        if (self._zona == None):
-            return "Mi nombre es {}, tengo una edad de {}, habito en {} y mi genero es {}".format(self._nombre, self._edad, self._habitat, self._genero)
 
-
-    def setNombre(self, nombre):
-        self._nombre = nombre
-        
     def getNombre(self):
-        return self._nombre
+        return self.nombre
     
-    def setEdad(self, edad):
-        self._edad = edad
-        
     def getEdad(self):
-        return self._edad
+        return self.edad
     
-    def setHabitat(self, habitat):
-        self._habitat = habitat
-        
     def getHabitat(self):
-        return self._habitat
+        return self.habitat
     
-    def setGenero(self, genero):
-        self._genero = genero
-        
     def getGenero(self):
-        return self._genero
+        return self.genero
     
-    def setZona(self, zona):
-        self._zona = zona
-        
-    def getZona(self):
-        return self._zona
+    def __str__(self):
+        from gestion.zona import Zona
+        if self.zona != None:
+            return "Mi nombre es " + str(self.nombre) + ", tengo una edad de " + str(self.edad) + ", habito en " + str(self.habitat) + " y mi genero es " + str(self.genero) + ", la zona en la que me ubico es " +  str(self.zona.getNombre()) + ", en el " + str(self.zona.getZoo().getNombre())
+        else:
+            return "Mi nombre es " + str(self.nombre) + ", tengo una edad de " + str(self.edad) + ", habito en " + str(self.habitat) + " y mi genero es " + str(self.genero) 
+    @classmethod
+    def totalPorTipo(cls):
+        from zooAnimales.anfibio import Anfibio
+        from zooAnimales.ave import Ave
+        from zooAnimales.mamifero import Mamifero
+        from zooAnimales.pez import Pez
+        from zooAnimales.reptil import Reptil
+        return "Mamiferos : " + str(Mamifero.cantidadMamiferos())+"\n" + "Aves : " + str(Ave.cantidadAves()) + "\n" + "Reptiles : " + str(Reptil.cantidadReptiles()) + "\n" + "Peces : " + str(Pez.cantidadPeces()) + "\n"+ "Anfibios : " + str(Anfibio.cantidadAnfibios())
 
-    @classmethod
-    def setTotalAnimales(cls, totalAnimales):
-        cls._totalAnimales = totalAnimales
-    
-    @classmethod
-    def getTotalAnimales(cls):
-        return cls._totalAnimales
+    def movimiento(self):
+        pass
